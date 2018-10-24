@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CodeEditor from './Interviewee/CodeEditor.jsx';
 
 
 const Container = styled.div`
@@ -30,6 +31,7 @@ const Left = styled.div`
     order: 1;
     width: 50%;
     height: 95%;
+    overflow: hidden;
     border: 1px solid red;
     background-color: blue;
 `;
@@ -38,6 +40,7 @@ const Right = styled.div`
     order: 2;
     width: 40%;
     height: 95%;
+    overflow: hidden;
     border: 1px solid green;
     background-color: pink;
 `;
@@ -63,7 +66,9 @@ class Instaviews extends React.Component {
             <Frame>
               <Menu />
               <BodyContainer>
-                    <Left />
+                    <Left>
+                        <CodeEditor></CodeEditor>
+                    </Left>
                     <Right />
               </BodyContainer>
             </Frame>
