@@ -18,12 +18,34 @@ const CodeInput = styled.textarea`
     autocapitalize: off;
     spellcheck: false;
 `
+const PseudoInput = styled.textarea`
+    height: 100%;
+    width: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    autocomplete: off;
+    autocorrect: off;
+    autocapitalize: off;
+    spellcheck: false;
+`
+
+const OICEInput = styled.textarea`
+    height: 100%;
+    width: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    autocomplete: off;
+    autocorrect: off;
+    autocapitalize: off;
+    spellcheck: false;
+`
 
 class TextFields extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeField: 'oice',
             oice: 'Placeholder oice text as an example',
             pseudocode: 'Some pseudocode to get us started off',
             code: `console.log('hello world')`
@@ -33,12 +55,16 @@ class TextFields extends React.Component {
 
     renderStoredInput() {
         //add oninput to capture keystrokes and store accordingly preventdefault
-        if(this.state.activeField === 'oice') {
-            return (<CodeInput autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">{this.state.oice}</CodeInput>);
-        } else if (this.state.activeField === 'pseudo') {
-            return (<CodeInput autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">{this.state.pseudocode}</CodeInput>);
-        } else if (this.state.activeField === 'code') {
-            return (<CodeInput autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">{this.state.code}</CodeInput>);
+        console.log('textfields', this.props.activeTab === 0)
+        if(this.props.activeTab === 0) {
+            console.log('OKAY 0', this.state.oice)
+            return <CodeInput autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" defaultValue={this.state.oice}/>;
+        } else if (this.props.activeTab === 1) {
+            console.log('OKAY 1', this.state.pseudocode)
+            return <PseudoInput autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" defaultValue={this.state.pseudocode} />;
+        } else if (this.props.activeTab === 2) {
+            console.log('OKAY 2', this.state.code)
+            return <OICEInput autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" defaultValue={this.state.code} />;
         }
     }
 

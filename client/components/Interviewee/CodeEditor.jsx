@@ -33,13 +33,22 @@ const SubmissionMenuContainer = styled.div`
 class CodeEditor extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {};
+        this.state = {
+            activeTab: 0
+        };
+
+        this.handleTabClick = this.handleTabClick.bind(this);
+    }
+
+    handleTabClick(event) {
+        console.log('event in codeeditor.jsx ', event.target.id);
+        this.setState({activeTab: Number(event.target.id)})
     }
 
     render() {
         return (<EditorContainer>
-            <EditorMenuContainer><EditorMenu/></EditorMenuContainer>
-            <TextFields></TextFields>
+            <EditorMenuContainer><EditorMenu handleClick={this.handleTabClick} activeTab={this.state.activeTab}/></EditorMenuContainer>
+            <TextFields activeTab={this.state.activeTab}></TextFields>
             <SubmissionMenuContainer><SubmissionMenu /></SubmissionMenuContainer>
         </EditorContainer>);
     }
